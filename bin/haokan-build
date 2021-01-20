@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+/**
+ * @file yarg配置
+ * @author wangyingjie
+ * @description 获取命令行输入的参数
+ */
+const yarg = require('yargs');
+const launch = require('../index');
+const partbuild = require('../command/partbuild');
+yarg.usage('$0 [command] [options]');
+// otp watch
+yarg
+    .example('$0 watch index', 'Watch index page on otp')
+    .command('watch [page]', '', yargs => {
+        yargs.positional('page', {
+            type: 'string',
+            default: 'all',
+            describe: 'Name of the page'
+        });
+    }, argv => {
+        launch(argv);
+    });
+// local start
+yarg
+    .example('$0 start index', 'Start watch index page on local')
+    .command('start <page>', '', yargs => {
+        yargs.positional('page', {
+            type: 'string',
+            describe: 'Name of the page'
+        });
+    }, argv => {
+        launch(argv);
+    });
+// production
+yarg
+    .example('$0 predeploy index', 'Predeploy index page on otp')
+    .command('predeploy [page]', '', yargs => {
+        yargs.positional('page', {
+            type: 'string',
+            default: 'all',
+            describe: 'Name of the page'
+        });
+    }, argv => {
+        launch(argv);
+    });
+// production
+yarg
+    .example('$0 qadeploy index', 'Deploy index all on agile for QA')
+    .command('qadeploy [page]', '', yargs => {
+        yargs.positional('page', {
+            type: 'string',
+            default: 'all',
+            describe: 'Name of the page'
+        });
+    }, argv => {
+        launch(argv);
+    });
+// production
+yarg
+    .example('$0 deploy index', 'Deploy index page on otp')
+    .command('deploy [page]', '', yargs => {
+        yargs.positional('page', {
+            type: 'string',
+            default: 'all',
+            describe: 'Name of the page'
+        });
+    }, argv => {
+        launch(argv);
+    });
+// incremental deployment
+yarg
+    .example('$0 partbuild', 'incremental deployment')
+    .command('partbuild', '', yargs => {}, argv => {
+        partbuild(argv);
+    });
+
+yarg
+    .help('h')
+    .alias('h', 'help')
+    .alias('v', 'version')
+    .epilog('@HaokanFE')
+    .demandCommand()
+    .argv;
