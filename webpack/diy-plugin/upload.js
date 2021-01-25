@@ -103,7 +103,7 @@ module.exports = class MywebpackUpload {
                 callback();
             });
         };
-        compiler.hooks.emit.tapPromise('MywebpackUpload', onEmit);
+        compiler.hooks.assetEmitted.tapAsync('MywebpackUpload', onEmit);
         // compiler.plugin('emit', onEmit);
     }
 }

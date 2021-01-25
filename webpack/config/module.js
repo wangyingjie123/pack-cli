@@ -15,9 +15,7 @@ module.exports = function (webpackConf, {
 }) {
     const px2remExclude = buildConfig.px2remExclude || '';
     const babelIncludeConfig = [
-        path.resolve(workingPath, 'src'),
-        path.resolve(workingPath, 'node_modules/@baidu/haokan-util'),
-        path.resolve(workingPath, 'node_modules/@baidu/haokan-ui')
+        path.resolve(workingPath, 'src')
     ];
     buildConfig.babelInclude && buildConfig.babelInclude.forEach(item => {
         babelIncludeConfig.push(path.resolve(workingPath, item));
